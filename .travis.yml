@@ -13,3 +13,10 @@ after_success:
   - docker build -t thanh829/multi-server ./server
   - docker build -t thanh829/multi-nginx ./nginx
   - docker build -t thanh829/multi-worker ./worker
+  # Login to docker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID"  --password-stdin
+  # Push image to docker hub
+  - docker push thanh829/multi-client
+  - docker push thanh829/multi-server
+  - docker push thanh829/multi-nginx
+  - docker push thanh829/multi-worker
